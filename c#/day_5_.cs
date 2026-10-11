@@ -301,3 +301,698 @@
 
 // Send me your code, and I'll review it, explain any errors, and score it out of 10.
 
+
+
+
+
+
+
+
+
+
+
+
+// # Day 4 — Topic 2: Nullable Types and Null Handling
+
+// Let's continue with JavaScript → TypeScript → C#.
+
+// This topic is important because real-world APIs and databases often contain missing values. For example, a user might not have a phone number, or a product might not have a discount.
+
+// ## 1. What is `null`?
+
+// `null` means a value is intentionally absent.
+
+// JavaScript:
+
+// ```
+// let username = null;
+
+// console.log(username); // null
+// ```
+
+// TypeScript:
+
+// ```
+// let username: string | null = null;
+
+// username = "Prasanth"; // Allowed
+// ```
+
+// C#:
+
+// ```
+// string? username = null;
+
+// username = "Prasanth"; // Allowed
+// ```
+
+// In C#, `string?` indicates that the string may be `null` when nullable reference types are enabled.
+
+// ## 2. Nullable value types: `int?` and `double?`
+
+// In C#, ordinary value types such as `int` and `double` cannot hold `null`.
+
+// ```
+// int age = null; // Compile-time error
+// ```
+
+// Use `int?` instead:
+
+// ```
+// int? age = null;
+
+// Console.WriteLine(age); // Prints nothing
+
+// age = 25;
+
+// Console.WriteLine(age); // 25
+// ```
+
+// The `?` makes a value type nullable.
+
+// | Type      | Can hold `null`? |
+// | --------- | ---------------- |
+// | `int`     | No               |
+// | `int?`    | Yes              |
+// | `double`  | No               |
+// | `double?` | Yes              |
+// | `bool`    | No               |
+// | `bool?`   | Yes              |
+
+// TypeScript equivalent:
+
+// ```
+// let age: number | null = null;
+// ```
+
+// JavaScript doesn't enforce these types.
+
+// ## 3. Null-coalescing operator: `??`
+
+// Use `??` to provide a fallback value when the left side is `null`.
+
+// C#:
+
+// ```
+// string? username = null;
+
+// string displayName = username ?? "Guest";
+
+// Console.WriteLine(displayName); // Guest
+// ```
+
+// TypeScript:
+
+// ```
+// const username: string | null = null;
+
+// const displayName = username ?? "Guest";
+
+// console.log(displayName); // Guest
+// ```
+
+// JavaScript uses the same operator.
+
+// Important: `??` only uses the fallback for `null` or `undefined` in JavaScript/TypeScript. In C#, it uses the fallback when the left operand is `null`.
+
+// For example:
+
+// ```
+// int? age = null;
+
+// int actualAge = age ?? 18;
+
+// Console.WriteLine(actualAge); // 18
+// ```
+
+// ## 4. Null-conditional operator: `?.`
+
+// Use `?.` to access a member only when the object isn't `null`.
+
+// C#:
+
+// ```
+// string? username = null;
+
+// int? length = username?.Length;
+
+// Console.WriteLine(length); // Nothing
+// ```
+
+// If `username` is `null`, `username?.Length` evaluates to `null` instead of throwing a `NullReferenceException`.
+
+// TypeScript:
+
+// ```
+// const username: string | null = null;
+
+// const length = username?.length;
+
+// console.log(length); // undefined
+// ```
+
+// Notice the difference: C# produces a nullable result (`null`), while TypeScript produces `undefined` for this example.
+
+// ## 5. Null checks with `if`
+
+// Sometimes you need to perform an operation only if a value exists.
+
+// C#:
+
+// ```
+// string? email = null;
+
+// if (email != null)
+// {
+//     Console.WriteLine(email.ToUpper());
+// }
+// else
+// {
+//     Console.WriteLine("Email is missing");
+// }
+// ```
+
+// Output:
+
+// ```
+// Email is missing
+// ```
+
+// TypeScript:
+
+// ```
+// const email: string | null = null;
+
+// if (email !== null) {
+//   console.log(email.toUpperCase());
+// } else {
+//   console.log("Email is missing");
+// }
+// ```
+
+// Both languages can narrow the type after a suitable null check.
+
+// ## 6. Real-world example: user profile
+
+// ```
+// using System;
+
+// class User
+// {
+//     public string Name { get; set; } = "";
+//     public string? PhoneNumber { get; set; }
+// }
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         User user = new User();
+
+//         user.Name = "Prasanth";
+//         user.PhoneNumber = null;
+
+//         string phone = user.PhoneNumber ?? "No phone number";
+
+//         Console.WriteLine($"Name: {user.Name}");
+//         Console.WriteLine($"Phone: {phone}");
+//     }
+// }
+// ```
+
+// Output:
+
+// ```
+// Name: Prasanth
+// Phone: No phone number
+// ```
+
+// This is useful when working with optional fields in database records or API responses.
+
+// ## 7. Your practice task
+
+// Create a C# product class with these requirements:
+
+// 1. `Name` is a non-nullable string.
+// 2. `Discount` is a nullable `double?`.
+// 3. If the discount is `null`, use `0` as the default with `??`.
+// 4. Print the product name and final discount.
+// 5. Use `?.` to safely access a nullable string and print its length.
+
+// Starter code:
+
+// ```
+// using System;
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         // Create a product name
+//         // Create a nullable discount
+//         // Use ?? to provide a default discount
+//         // Print the values
+//         // Use ?. to safely access a nullable string
+//     }
+// }
+// ```
+
+// Try writing the code yourself and send it here. I'll review it and score it out of 10.
+
+
+
+
+// lambda
+
+// Func<int, int, int> add = (a,b) => a+b;
+
+// Console.WriteLine(add(10,20));
+
+// Action<string> greet = name =>
+// {
+//     Console.WriteLine($"Hello, {name}");
+// };
+
+// greet("pittu");
+
+
+// static int Add(int a, int b)
+// {
+//     return a+b;
+// }
+
+// Func<int,int,int> op = Add;
+
+// Console.WriteLine(op(22,1));
+
+
+
+
+
+
+// # Day 4 — Topic 3: Lambda Expressions and Delegates
+
+// Today we'll learn how C# represents functions as values and passes behavior between methods. This is especially useful in LINQ, ASP.NET Core, and event handling.
+
+// We'll compare JavaScript → TypeScript → C#.
+
+// ## 1. Lambda expressions
+
+// A lambda is a short way to write a function.
+
+// ### JavaScript
+
+// ```
+// const square = n => n * n;
+
+// console.log(square(5)); // 25
+// ```
+
+// ### TypeScript
+
+// ```
+// const square = (n: number): number => n * n;
+
+// console.log(square(5)); // 25
+// ```
+
+// ### C\#
+
+// ```
+// Func<int, int> square = n => n * n;
+
+// Console.WriteLine(square(5)); // 25
+// ```
+
+// Understand this C# declaration:
+
+// ```
+// Func<int, int> square = n => n * n;
+// ```
+
+// - `Func<int, int>` represents a function that accepts an `int` and returns an `int`.
+// - The first `int` is the input type.
+// - The second `int` is the return type.
+// - `n => n * n` is the lambda expression.
+
+// Think of `Func<int, int>` as similar to a typed JavaScript or TypeScript function reference.
+
+// ## 2. `Func` — A function that returns a value
+
+// Use `Func` when you want to store or pass a function that returns a result.
+
+// ```
+// Func<int, int, int> add = (a, b) => a + b;
+
+// Console.WriteLine(add(10, 20)); // 30
+// ```
+
+// Here, `Func<int, int, int>` means:
+
+// - Input 1: `int`
+// - Input 2: `int`
+// - Return: `int`
+
+// TypeScript equivalent:
+
+// ```
+// const add = (a: number, b: number): number => a + b;
+
+// console.log(add(10, 20)); // 30
+// ```
+
+// ## 3. `Action` — A function that returns nothing
+
+// Use `Action` when the function performs an operation but doesn't return a value.
+
+// ### C\#
+
+// ```
+// Action<string> greet = name =>
+// {
+//     Console.WriteLine($"Hello, {name}!");
+// };
+
+// greet("Prasanth");
+// ```
+
+// Output:
+
+// ```
+// Hello, Prasanth!
+// ```
+
+// TypeScript equivalent:
+
+// ```
+// const greet = (name: string): void => {
+//   console.log(`Hello, ${name}!`);
+// };
+
+// greet("Prasanth");
+// ```
+
+// The difference:
+
+// | C# type            | Purpose                            | Example                            |
+// | ------------------ | ---------------------------------- | ---------------------------------- |
+// | `Func<T, TResult>` | Accepts input and returns a value  | Calculate a total                  |
+// | `Action<T>`        | Accepts input and returns nothing  | Print a message                    |
+// | `Predicate<T>`     | Accepts a value and returns `bool` | Check whether a number is positive |
+
+// ## 4. Delegates — Store and pass methods
+
+// A delegate is a type-safe reference to a method. It defines the method signature that can be assigned to it.
+
+// ```
+// using System;
+
+// class Program
+// {
+//     static int Add(int a, int b)
+//     {
+//         return a + b;
+//     }
+
+//     static void Main()
+//     {
+//         Func<int, int, int> operation = Add;
+
+//         int result = operation(10, 20);
+
+//         Console.WriteLine(result); // 30
+//     }
+// }
+// ```
+
+// Here, `operation` references the `Add` method. Calling `operation(10, 20)` invokes that method.
+
+// In modern C#, `Func` and `Action` are commonly used delegate types, so you often don't need to declare a custom delegate.
+
+// ## 5. Use lambdas with LINQ
+
+// This connects today's topic to the LINQ lesson.
+
+// ```
+// using System;
+// using System.Linq;
+// using System.Collections.Generic;
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         List<int> numbers = new List<int> { 10, 15, 20, 25, 30 };
+
+//         var result = numbers.Where(n => n > 20);
+
+//         foreach (int number in result)
+//         {
+//             Console.WriteLine(number);
+//         }
+//     }
+// }
+// ```
+
+// In `n => n > 20`, the lambda supplies the condition that `Where()` uses to decide which values to keep.
+
+// JavaScript equivalent:
+
+// ```
+// const numbers = [10, 15, 20, 25, 30];
+
+// const result = numbers.filter(n => n > 20);
+
+// console.log(result); // [25, 30]
+// ```
+
+// ## 6. Your practice task
+
+// Create a C# program with these requirements:
+
+// 1. Use `Func<int, int, int>` to add two numbers.
+// 2. Use `Func<int, int, int>` to multiply two numbers.
+// 3. Use `Action<string>` to print a message.
+// 4. Use a lambda with `Where()` to filter numbers greater than 50 from a list.
+
+// Expected output:
+
+// ```
+// Addition: 30
+// Multiplication: 200
+// Hello from C#
+// 60
+// 80
+// 100
+// ```
+
+// Try writing the code yourself. Send it here, and I'll review it and score it out of 10.
+
+
+
+
+
+// // async and wait 
+
+// class Program
+// {
+//     static async Task<string> GetDataAsync()
+//     {
+//         await Task.Delay(2000);
+//         return "Data received";
+//     }
+//     static async Task<string> GetMessageAsync()
+//     {
+//         await Task.Delay(2000);
+//         return "Data";
+//     }
+
+//     static async Task Main()
+//     {
+//         Console.WriteLine("async started");
+//         string res = await GetMessageAsync();
+//         Console.WriteLine(res);
+//     }
+// }
+
+
+
+
+// # Day 4 — Topic 4: `async` / `await` in C\#
+
+// This is one of the most important topics for your goal of becoming a React + ASP.NET Core full-stack developer. You'll use asynchronous programming when calling APIs, querying databases, and reading files.
+
+// We'll compare JavaScript → TypeScript → C#.
+
+// ## 1. What is asynchronous programming?
+
+// Imagine your application requests data from a server. The response takes two seconds.
+
+// You don't want your application to block a thread unnecessarily while waiting for that response. Asynchronous programming lets the application wait for the operation to complete while allowing other work to proceed.
+
+// In JavaScript, you already know `async` and `await`.
+
+// ### JavaScript
+
+// ```
+// async function getData() {
+//   console.log("Started");
+
+//   await new Promise(resolve => setTimeout(resolve, 2000));
+
+//   console.log("Data received");
+// }
+
+// getData();
+// console.log("Other work");
+// ```
+
+// Output:
+
+// ```
+// Started
+// Other work
+// Data received
+// ```
+
+// The code after `getData()` continues while the asynchronous function is waiting.
+
+// ## 2. TypeScript equivalent
+
+// TypeScript adds types to the same model.
+
+// ```
+// async function getData(): Promise<string> {
+//   await new Promise(resolve => setTimeout(resolve, 2000));
+
+//   return "Data received";
+// }
+
+// async function main(): Promise<void> {
+//   const result = await getData();
+//   console.log(result);
+// }
+
+// main();
+// ```
+
+// Remember:
+
+// - JavaScript async functions return promises.
+// - TypeScript expresses the return type using `Promise<T>`.
+// - `await` waits for the promise to settle and gives you its result.
+
+// ## 3. C# equivalent
+
+// C# uses `Task` and `Task<T>` for asynchronous operations.
+
+// ```
+// using System;
+// using System.Threading.Tasks;
+
+// class Program
+// {
+//     static async Task<string> GetDataAsync()
+//     {
+//         await Task.Delay(2000);
+
+//         return "Data received";
+//     }
+
+//     static async Task Main()
+//     {
+//         Console.WriteLine("Started");
+
+//         string result = await GetDataAsync();
+
+//         Console.WriteLine(result);
+//     }
+// }
+// ```
+
+// Output after approximately two seconds:
+
+// ```
+// Started
+// Data received
+// ```
+
+// `Task.Delay(2000)` asynchronously waits for approximately two seconds without blocking the current thread for the duration.
+
+// ## 4. Understand `Task` vs. `Task<T>`
+
+// | C#             | Similar TypeScript concept | Meaning                                          |
+// | -------------- | -------------------------- | ------------------------------------------------ |
+// | `Task`         | `Promise<void>`            | Async operation with no returned value           |
+// | `Task<string>` | `Promise<string>`          | Async operation returning a string               |
+// | `Task<int>`    | `Promise<number>`          | Async operation returning an integer             |
+// | `await`        | `await`                    | Wait for the result of an asynchronous operation |
+
+// Example:
+
+// ```
+// static async Task SaveDataAsync()
+// {
+//     await Task.Delay(1000);
+//     Console.WriteLine("Data saved");
+// }
+// ```
+
+// This returns a `Task`, not a string or integer.
+
+// ```
+// static async Task<int> GetNumberAsync()
+// {
+//     await Task.Delay(1000);
+//     return 100;
+// }
+// ```
+
+// This returns a `Task<int>`. When awaited, the result is `100`.
+
+// ## 5. A real-world ASP.NET Core example
+
+// Suppose your API needs to retrieve a user from a database.
+
+// ```
+// public async Task<string> GetUserNameAsync()
+// {
+//     string userName = await _dbContext.Users
+//         .Select(user => user.Name)
+//         .FirstAsync();
+
+//     return userName;
+// }
+// ```
+
+// This is an illustrative Entity Framework Core query; `_dbContext` must be configured and the database operation can fail. In a real application, you'd typically handle the case where no user exists, for example with `FirstOrDefaultAsync()`.
+
+// The key benefit is that asynchronous database I/O doesn't need to tie up an ASP.NET Core request thread while waiting for the database response.
+
+// Important: `async` alone does not make CPU-heavy code run faster. `await` is most useful for operations that spend time waiting, such as network, database, and file I/O.
+
+// ## 6. Your practice task
+
+// Create a console application with these requirements:
+
+// 1. Create `GetMessageAsync()` that returns `Task<string>`.
+// 2. Use `await Task.Delay(2000)` inside it.
+// 3. Return `"Hello from async C#"`.
+// 4. In `Main()`, await the method and print the returned message.
+// 5. Print `"Program started"` before awaiting and `"Program completed"` after awaiting.
+
+// Expected output:
+
+// ```
+// Program started
+// Hello from async C#
+// Program completed
+// ```
+
+
+
+// 
+// Try the code yourself first. Send it here, and I'll review it and score it out of 10.
+
+
+
