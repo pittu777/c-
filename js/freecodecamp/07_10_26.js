@@ -10,26 +10,142 @@
 // Return the amount of fuel needed rounded to one decimal place.
 
 
-function launchFuel(payload) {
-  let totalMass = payload;
-  let totalFuel = 0;
-  let previousFuel = 0;
+// function launchFuel(payload) {
+//   let totalMass = payload;
+//   let totalFuel = 0;
+//   let previousFuel = 0;
 
-  while (true) {
-    const requiredFuel = totalMass / 5;
-    const additionalFuel = requiredFuel - previousFuel;
+//   while (true) {
+//     const requiredFuel = totalMass / 5;
+//     const additionalFuel = requiredFuel - previousFuel;
 
-    if (additionalFuel < 1) {
-      return Math.round(requiredFuel * 10) / 10;
-    }
+//     if (additionalFuel < 1) {
+//       return Math.round(requiredFuel * 10) / 10;
+//     }
 
-    totalFuel = requiredFuel;
-    totalMass = payload + totalFuel;
-    previousFuel = totalFuel;
-  }
-}
+//     totalFuel = requiredFuel;
+//     totalMass = payload + totalFuel;
+//     previousFuel = totalFuel;
+//   }
+// }
 
-console.log(launchFuel(50));
+// console.log(launchFuel(50));
 
 
 // https://www.freecodecamp.org/learn/daily-coding-challenge/10-10
+
+
+
+// 12-10-206
+
+// https://www.freecodecamp.org/learn/daily-coding-challenge/10-11
+
+// function hexToDecimal(hex){
+//   return parseInt(hex, 16);
+// }
+
+
+
+
+// function battle(ourTeam, oppenent){
+
+//   const lower = {
+//   "A": 1,
+//   "B": 2,
+//   "C": 3,
+//   "D": 4,
+//   "E": 5,
+//   "F": 6,
+//   "G": 7,
+//   "H": 8,
+//   "I": 9,
+//   "J": 10,
+//   "K": 11,
+//   "L": 12,
+//   "M": 13,
+//   "N": 14,
+//   "O": 15,
+//   "P": 16,
+//   "Q": 17,
+//   "R": 18,
+//   "S": 19,
+//   "T": 20,
+//   "U": 21,
+//   "V": 22,
+//   "W": 23,
+//   "X": 24,
+//   "Y": 25,
+//   "Z": 26
+// }
+
+// const cap = {
+//   "A": 2,
+//   "B": 4,
+//   "C": 6,
+//   "D": 8,
+//   "E": 10,
+//   "F": 12,
+//   "G": 14,
+//   "H": 16,
+//   "I": 18,
+//   "J": 20,
+//   "K": 22,
+//   "L": 24,
+//   "M": 26,
+//   "N": 28,
+//   "O": 30,
+//   "P": 32,
+//   "Q": 34,
+//   "R": 36,
+//   "S": 38,
+//   "T": 40,
+//   "U": 42,
+//   "V": 44,
+//   "W": 46,
+//   "X": 48,
+//   "Y": 50,
+//   "Z": 52
+// }
+
+// function calculate(arr){
+
+//   let res = 0;
+//   for(const word of arr){
+//     for(let i=0; i<word.length; i++){
+//       let ch = word[i];
+//       if(ch === ch.toLowerCase()){
+//         res = res + lower[ch];
+//       }else{
+
+//         res = res+cap[ch];
+//       }
+//     }
+//   }
+//   return res;
+// }
+
+
+//   const ourWords = ourTeam.split(" ");
+//   const oppenentWords = oppenent.split(" ");
+
+//   const oppRes = calculate(oppenentWords);
+//   const res = calculate(ourWords);
+  
+
+//   if(oppRes > res){
+//     return "We Loss";
+//   }else if(res>oppRes){
+//     return "We Win";
+//   }else{
+//     return "Draw";
+//   }
+
+
+
+// }
+
+// console.log(battle("Cheeseburger with fries", "Cheeseburger with Fries"));
+
+
+
+

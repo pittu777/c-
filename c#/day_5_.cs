@@ -996,3 +996,260 @@
 
 
 
+
+
+
+// file read and writing 
+
+// using System;
+// using System.IO;
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         File.WriteAllText("notes.txt", "learn c#");
+//         string c = File.ReadAllText("notes.txt");
+//         Console.WriteLine(c);
+//     }
+// }
+
+
+
+
+// # Day 4 — Topic 5: File Handling and JSON in C\#
+
+// You've covered LINQ, nullable types, lambda expressions, delegates, and `async`/`await`. Next, let's learn how to read files, write files, and work with JSON.
+
+// These skills are useful when building .NET applications that save settings, import data, generate reports, or exchange data with APIs.
+
+// We'll compare JavaScript, TypeScript, and C#.
+
+// ## 1. Reading and writing text files
+
+// Imagine your application needs to save a user's notes in a file.
+
+// ### JavaScript (Node.js)
+
+// ```
+// const fs = require("fs");
+
+// fs.writeFileSync("notes.txt", "Learning C# and .NET");
+
+// const content = fs.readFileSync("notes.txt", "utf8");
+
+// console.log(content);
+// ```
+
+// ### TypeScript (Node.js)
+
+// ```
+// import { writeFileSync, readFileSync } from "node:fs";
+
+// writeFileSync("notes.txt", "Learning C# and .NET");
+
+// const content: string = readFileSync("notes.txt", "utf8");
+
+// console.log(content);
+// ```
+
+// ### C\#
+
+// ```
+// using System;
+// using System.IO;
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         File.WriteAllText("notes.txt", "Learning C# and .NET");
+
+//         string content = File.ReadAllText("notes.txt");
+
+//         Console.WriteLine(content);
+//     }
+// }
+// ```
+
+// Output:
+
+// ```
+// Learning C# and .NET
+// ```
+
+// - `File.WriteAllText()` creates or overwrites a file.
+// - `File.ReadAllText()` reads the entire file as a string.
+// - `System.IO` provides file and directory operations.
+
+// Be careful: `WriteAllText()` overwrites existing file contents. Use `File.AppendAllText()` when you want to add text to the end.
+
+// ## 2. Asynchronous file handling
+
+// For larger files or server applications, asynchronous file operations can be useful.
+
+// ```
+// using System;
+// using System.IO;
+// using System.Threading.Tasks;
+
+// class Program
+// {
+//     static async Task Main()
+//     {
+//         await File.WriteAllTextAsync(
+//             "notes.txt",
+//             "Learning ASP.NET Core"
+//         );
+
+//         string content = await File.ReadAllTextAsync("notes.txt");
+
+//         Console.WriteLine(content);
+//     }
+// }
+// ```
+
+// Here, `WriteAllTextAsync()` and `ReadAllTextAsync()` return tasks that you can await.
+
+// ## 3. What is JSON?
+
+// JSON stands for JavaScript Object Notation. It's a common format for sending structured data between a frontend and backend.
+
+// For example, your React frontend might send this data to an ASP.NET Core API:
+
+// ```
+// {
+//   "name": "Prasanth",
+//   "age": 22,
+//   "isDeveloper": true
+// }
+// ```
+
+// JavaScript and TypeScript can work with JSON using `JSON.stringify()` and `JSON.parse()`.
+
+// C# commonly uses `System.Text.Json`.
+
+// ## 4. Convert a C# object to JSON
+
+// This is called serialization.
+
+// ```
+// using System;
+// using System.Text.Json;
+
+// class Student
+// {
+//     public string Name { get; set; } = "";
+//     public int Age { get; set; }
+// }
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         Student student = new Student
+//         {
+//             Name = "Prasanth",
+//             Age = 22
+//         };
+
+//         string json = JsonSerializer.Serialize(student);
+
+//         Console.WriteLine(json);
+//     }
+// }
+// ```
+
+// Output:
+
+// ```
+// {"Name":"Prasanth","Age":22}
+// ```
+
+// To make the JSON easier to read, you can use formatting options:
+
+// ```
+// string json = JsonSerializer.Serialize(
+//     student,
+//     new JsonSerializerOptions { WriteIndented = true }
+// );
+// ```
+
+// ## 5. Convert JSON back into a C# object
+
+// This is called deserialization.
+
+// ```
+// using System;
+// using System.Text.Json;
+
+// class Student
+// {
+//     public string Name { get; set; } = "";
+//     public int Age { get; set; }
+// }
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         string json = """
+//         {
+//             "Name": "Prasanth",
+//             "Age": 22
+//         }
+//         """;
+
+//         Student? student = JsonSerializer.Deserialize<Student>(json);
+
+//         if (student != null)
+//         {
+//             Console.WriteLine(student.Name);
+//             Console.WriteLine(student.Age);
+//         }
+//     }
+// }
+// ```
+
+// Output:
+
+// ```
+// Prasanth
+// 22
+// ```
+
+// The null check matters because deserialization can return `null`. Invalid JSON can also cause a `JsonException`, so production code should handle malformed input appropriately.
+
+// ## 6. JavaScript / TypeScript vs. C\#
+
+// | Operation        | JavaScript / TypeScript   | C#                                    |
+// | ---------------- | ------------------------- | ------------------------------------- |
+// | Serialize object | `JSON.stringify(obj)`     | `JsonSerializer.Serialize(obj)`       |
+// | Deserialize JSON | `JSON.parse(json)`        | `JsonSerializer.Deserialize<T>(json)` |
+// | Write text file  | Node.js `writeFileSync()` | `File.WriteAllText()`                 |
+// | Read text file   | Node.js `readFileSync()`  | `File.ReadAllText()`                  |
+// | Async file read  | Node.js `fs/promises`     | `File.ReadAllTextAsync()`             |
+
+// One key difference: `JSON.parse()` produces a JavaScript value, while `JsonSerializer.Deserialize<T>()` attempts to produce an object of the specified C# type.
+
+// ## 7. Your practice task
+
+// Build a small Student Data Saver.
+
+// Requirements:
+
+// 1. Create a `Student` class with `Name`, `Age`, and `Course` properties.
+// 2. Create a student object.
+// 3. Serialize the object into JSON.
+// 4. Save the JSON into `student.json`.
+// 5. Read the JSON from the file.
+// 6. Deserialize it back into a `Student` object.
+// 7. Print the student's name, age, and course.
+
+// Use `File.WriteAllText()`, `File.ReadAllText()`, and `JsonSerializer`.
+
+// After this topic, your next major milestone is ASP.NET Core Web API — where you'll apply classes, interfaces, dependency injection, async programming, and JSON together to build real backend endpoints.
+
+
+
+
