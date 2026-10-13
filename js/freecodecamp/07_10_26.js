@@ -149,3 +149,34 @@
 
 
 
+// https://www.freecodecamp.org/learn/daily-coding-challenge/10-13
+
+
+
+function to12(time) {
+    console.log(typeof time);
+  const hours = Number(time.slice(0, 2));
+  console.log("hour", hours);
+  const minutes = time.slice(2);
+  console.log("M", minutes);
+
+  const period = hours < 12 ? "AM" : "PM";
+
+  let convertedHours;
+
+  if (hours === 0) {
+    convertedHours = 12;
+  } else if (hours > 12) {
+    convertedHours = hours - 12;
+  } else {
+    convertedHours = hours;
+  }
+
+  return `${convertedHours}:${minutes} ${period}`;
+}
+
+console.log(to12("1124")); // "11:24 AM"
+console.log(to12("0900")); // "9:00 AM"
+console.log(to12("1455")); // "2:55 PM"
+console.log(to12("0000")); // "12:00 AM"
+console.log(to12("1200")); // "12:00 PM"
